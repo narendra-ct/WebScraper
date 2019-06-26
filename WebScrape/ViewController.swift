@@ -35,7 +35,9 @@ class ViewController: UIViewController {
 //        let link = "https://www.etsy.com/in-en/listing/632458365/personalised-foil-notebook-a5-notebook?ref=hp_prn&bes=1";
         
         
-        let link = "https://www.aliexpress.com/item/32982338666.html?spm=a2g01.ams_82789.layer-nban3a.1.2ee344c7MSRCRF"
+        // let link = "https://www.aliexpress.com/item/32982338666.html?spm=a2g01.ams_82789.layer-nban3a.1.2ee344c7MSRCRF"
+        
+        let link = "https://www.aliexpress.com/item/32504733682.html?spm=a2g01.12597576.p99adbb.11.479a6501n7UXkA&gps-id=6272395&scm=1007.16233.119941.0&scm_id=1007.16233.119941.0&scm-url=1007.16233.119941.0&pvid=0db5b018-dee0-4c69-8b5d-437e13e1ce55"
         
         AF.request(link).responseString { response in
             let value = try? response.result.get()
@@ -58,16 +60,36 @@ class ViewController: UIViewController {
     func parseHTML(html: String) -> Void {
         // Finish this next
         if let doc = try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
-            
             print(doc.title)
+            
+            
+            /* // ALI EXPRS
+            if let base = doc.at_css("head"){
+                // print(base?.toHTML)
+                for link in base.css("meta") {
+                    //print(link["name"])
+                    if let linkStr = link["property"], linkStr == "og:image" {
+                        print(link["content"])
+                    }
+                    
+                    if let titleStr = link["property"], titleStr == "og:title" {
+                        print(link["content"])
+                    }
+                }
+                for link in base.css("link") {
+                    // print(link["rel"])
+                    if let linkStr = link["rel"], linkStr == "canonical" {
+                       print(link["href"])
+                    }
+                }
+            }
+            
             let s = doc.at_css("title")
             print(s?.text)
-            
             let priceAm = doc.at_css("span#j-sku-discount-price")
             if let price = priceAm?.text {
                 print(price)
             }
-            
             if let base = doc.at_css("div#j-product-info-sku"){
                 // print(base?.toHTML)
                 for link in base.css("img") {
@@ -75,7 +97,6 @@ class ViewController: UIViewController {
                     print(link["bigpic"])
                 }
             }
-
             if let base = doc.at_css("div#j-detail-gallery-main"){
                 // print(base?.toHTML)
                 for link in base.css("img") {
@@ -83,6 +104,7 @@ class ViewController: UIViewController {
                     print(link["bigpic"])
                 }
             }
+            */
             
             
             
